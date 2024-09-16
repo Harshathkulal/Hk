@@ -3,52 +3,59 @@
 import React from "react";
 import { SparklesCore } from "./ui/sparkles";
 import { motion } from "framer-motion";
-import { Button } from "./ui/button";
+import Image from "next/image";
 import { BiLogoGmail } from "react-icons/bi";
 import {
   FaInstagram,
   FaGithub,
   FaDiscord,
-  FaSlack,
+  FaGamepad,
   FaLinkedin,
 } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
 const socialLinks = [
-  { href: "https://github.com/Harshathkulal", icon: <FaGithub /> },
-  { href: "mailto:harshathmkulal5@gmail.com", icon: <BiLogoGmail /> },
-  { href: "https://x.com/Hxrshxth_K", icon: <FaXTwitter /> },
-  { href: "https://harshath.vercel.app/", icon: <CgWebsite /> },
-  { href: "https://discord.com/invite/5hSSQtrt", icon: <FaDiscord /> },
-  { href: "https://www.instagram.com/harshath_kulal/", icon: <FaInstagram /> },
+  { href: "https://github.com/Harshathkulal", icon: <FaGithub size={48} /> },
+  { href: "mailto:harshathmkulal5@gmail.com", icon: <BiLogoGmail size={48} /> },
+  { href: "https://x.com/Hxrshxth_K", icon: <FaXTwitter size={48} /> },
+  { href: "https://harshath.vercel.app/", icon: <CgWebsite size={48} /> },
   {
-    href: "https://app.slack.com/client/T07LA2TD19S/D07L0UPUFT8",
-    icon: <FaSlack />,
+    href: "https://discord.com/invite/9XYcBYmk",
+    icon: <FaDiscord size={48} />,
+  },
+  {
+    href: "https://www.instagram.com/harshath_kulal/",
+    icon: <FaInstagram size={48} />,
+  },
+  {
+    href: "https://supercell.com/en/games/clashofclans/",
+    icon: <FaGamepad size={48} />,
   },
 
   {
     href: "https://www.linkedin.com/in/harshath-kulal-ba078b209/",
-    icon: <FaLinkedin />,
+    icon: <FaLinkedin size={48} />,
   },
 ];
 
 const Hero = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center w-full h-screen bg-black overflow-hidden">
+    <div className="relative flex flex-col items-center pt-8 w-full h-screen bg-black overflow-hidden gap-6">
       <SparklesCore
         id="tsparticlesfullpage"
         background="transparent"
         minSize={0.6}
         maxSize={1.4}
-        particleDensity={50}
+        particleDensity={30}
         className="absolute inset-0 w-full h-screen"
         particleColor="#FFFFFF"
       />
 
-      <motion.h1
-        className="relative z-10 text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-bold"
+      <motion.div
+        className="flex item center z-30 text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-bold"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -60,10 +67,16 @@ const Hero = () => {
           damping: 20,
         }}
       >
-        Harshath Kulal
-      </motion.h1>
+        <Image
+          src="/icon.svg"
+          alt="Harshath"
+          height={60}
+          width={60}
+          className="bg-white rounded-xl"
+        />
+      </motion.div>
 
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center z-20">
         {socialLinks.map((link, index) => (
           <motion.li
             key={index}
@@ -83,13 +96,13 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button
-                type="button"
-                variant="outline"
-                className="rounded-lg hover:scale-110"
+              <HoverBorderGradient
+                containerClassName="rounded-lg"
+                as="button"
+                className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
               >
                 <span className="text-base text-white">{link.icon}</span>
-              </Button>
+              </HoverBorderGradient>
             </Link>
           </motion.li>
         ))}
